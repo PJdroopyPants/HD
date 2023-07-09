@@ -243,11 +243,11 @@ const introTitle = new SplitText(".intro__title", {
 	linesClass: "intro-line",
 	charsClass: "char"
 });
-const splitTitles = new SplitText(titles, {
-	type: "lines, chars",
-	linesClass: "line",
-	position: "relative"
-});
+//const splitTitles = new SplitText(titles, {
+//	type: "lines, chars",
+//	linesClass: "line",
+//	position: "relative"
+//});
 let slideID = 0;
 
 
