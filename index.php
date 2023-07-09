@@ -60,7 +60,11 @@
 </svg>
 		</section>
 
-		<section class="slider slide--1" id="slide-1">
+		
+		
+		
+		
+<!--		<section class="slider slide--1" id="slide-1">
             <div id="outerContainer">
                 <div id="clockWrap">
                     <div id="coverUp"></div>
@@ -218,7 +222,11 @@
 			<a class="footer__link" href="" target="_blank">The Human Design</a>
 			<a class="footer__link-top" href="#slide-0">Top<span class="footer__link-top-line"></span></a>
 			<p class="footer__copyright">All images © 2023 TheHumanDesign.com</p>
-		</footer>
+		</footer>-->
+		
+		
+		
+		
 	</div>
 </div>
 <script>
@@ -227,9 +235,9 @@ select = (e) => document.querySelector(e);
 selectAll = (e) => document.querySelectorAll(e);
 
 const stage = select(".stage");
-const slides = selectAll(".slider");
-const links = selectAll(".slide__scroll-link");
-const titles = selectAll(".col__content-title");
+//const slides = selectAll(".slider");
+//const links = selectAll(".slide__scroll-link");
+//const titles = selectAll(".col__content-title");
 const introTitle = new SplitText(".intro__title", {
 	type: "lines, chars",
 	linesClass: "intro-line",
@@ -558,10 +566,10 @@ function init() {
 	gsap.set(stage, { autoAlpha: 1 });
 	initHeader();
 	initIntro();
-	initLinks();
-	initSlides();
-	initParallax();
-	initKeys();
+	//initLinks();
+	//initSlides();
+	//initParallax();
+	//initKeys();
 }
 
 window.onload = () => {
