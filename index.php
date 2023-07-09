@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
 <script src="/js/greenmin/SplitText.min.js"></script>
 <script src="/js/greenmin/MorphSVGPlugin.min.js"></script>
-<link rel="stylesheet" href="/css/style.css?v=3">
+<link rel="stylesheet" href="/css/style.css?v=<?= time() ?>">
 
 </head>
 <!-- Google tag (gtag.js) -->
