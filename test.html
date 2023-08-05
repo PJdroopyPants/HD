@@ -176,7 +176,36 @@ function resize(){let scale,
     wrapper.style.width = isMax?'':maxWidth * scale;
     wrapper.style.height = isMax?'':maxHeight * scale;
 }
+
+
+
+
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 requestAnimationFrame(mainLoop);
 
 function generateGateLineObject() {
@@ -222,7 +251,6 @@ const planets = [];
 const planetCommon = {
       x: 0, y: 0, cos: 1, sin: 0,
       update(time) {
-		//this.ang = parseFloat((this.startAng - this.orbitalSpeed/pace * time).toFixed(4)); // for gate location trackingvery  high CPU
 		this.ang = this.startAng - this.orbitalSpeed/pace * time;
         this.cos = Math.cos(this.ang);
         this.sin = Math.sin(this.ang);
@@ -238,7 +266,6 @@ const planetCommon = {
             this.x = this.orbits.x + this.cos * this.dist;
             this.y = this.orbits.y + this.sin * this.dist;
 		}else  if (this.orbits && this.maxDist > 0 && sunMoved==false) {
-			//this.dist=this.dist;
             this.x = this.orbits.x + this.cos * this.dist;
             this.y = this.orbits.y + this.sin * this.dist;
 		}
@@ -258,8 +285,6 @@ const planetCommon = {
 			setShadow(ctx, "rgba(0,0,0,0.8)", 0, 3, 2, -this.ang);
 			symboLarge(this.symbo, this.fill, this.stroke);
 		}else if (this.type === 3){ // sun line
-			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
-			//console.log(daGates);
 			setShadow(ctx, "black", 0, 5, 6, -this.ang);
 			const ax = Math.cos(this.dirTo);
 			const ay = Math.sin(this.dirTo);
@@ -325,8 +350,6 @@ const planetCommon = {
 			ctx.closePath();
 			
 		}else if (this.type === 4){ // earth  line
-			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
-			//console.log(daGates);
 			setShadow(ctx, "black", 0, 4, 5, -this.ang);
 			ctx.beginPath();
 			ctx.lineCap = "round";
@@ -366,8 +389,6 @@ const planetCommon = {
 			symboMoon(this.symbo, "#d4af37");
 		}
 		if (this.dirTo !== undefined && (this.type ==5 || this.type === 6)) {// planet, lunar, node lines
-			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
-			//console.log(daGates);
 			const ax = Math.cos(this.dirTo);
 			const ay = Math.sin(this.dirTo);
 			ctx.rotate(-Math.PI);
@@ -391,10 +412,6 @@ const planetCommon = {
 					ctx.stroke();
 					ctx.closePath();
 			} else if (this.type === 6 && sunMoved==true) {  // planets lines
-			//if(this.idnum==13){
-				//daGates = parseFloat(findGate(gateLineObject,this.dirTo+this.ang).toFixed(3));
-				//console.log(daGates);
-			//}
 
 				setShadow(ctx, "rgba(0,0,0,0.8)", 0, 6, 9, -this.ang);
 				
@@ -508,7 +525,6 @@ const planetCommon = {
 	},
 	directionTo(planet) {
 		if (planet !== this) {
-			//this.dirTo =  parseFloat((Math.atan2(planet.y - this.y, planet.x - this.x) - this.ang).toFixed(4)); // high CPU
 			this.dirTo =  Math.atan2(planet.y - this.y, planet.x - this.x) - this.ang;
 			this.distTo = Math.hypot(planet.y - this.y, planet.x - this.x);
 		} else {
@@ -534,17 +550,17 @@ const planet = (idnum, name, orbitsName, dist, orbitalSpeed, startAng, fill, str
 };
 
 
-var sunPosD = findAngle(gateLineObject,52.1),
-	merPosD = findAngle(gateLineObject,35.3),
-	venPosD = findAngle(gateLineObject,52.3),
-	mooPosD = findAngle(gateLineObject,16.6),
-	nnoPosD = findAngle(gateLineObject,44.5),
-	marPosD = findAngle(gateLineObject, 4.5),
-	jupPosD = findAngle(gateLineObject,23.3),
-	satPosD = findAngle(gateLineObject,31.1),
-	uraPosD = findAngle(gateLineObject,28.2),
-	nepPosD = findAngle(gateLineObject, 5.1),
-	pluPosD = findAngle(gateLineObject,18.6);
+var sunPosD = findAngle(daGates,52.1),
+	merPosD = findAngle(daGates,35.3),
+	venPosD = findAngle(daGates,52.3),
+	mooPosD = findAngle(daGates,16.6),
+	nnoPosD = findAngle(daGates,44.5),
+	marPosD = findAngle(daGates, 4.5),
+	jupPosD = findAngle(daGates,23.3),
+	satPosD = findAngle(daGates,31.1),
+	uraPosD = findAngle(daGates,28.2),
+	nepPosD = findAngle(daGates, 5.1),
+	pluPosD = findAngle(daGates,18.6);
 
 planet(1, "SunLine",          undefined,    0,          1,         sunPosD,  "#d4af37", "#232323",    3, 0);
 planet(4, "EarthLine",        "SunLine",   128,         1, sunPosD+Math.PI,  "#375CD4", "#232323",    4, 0);
@@ -668,7 +684,36 @@ function mainLoop(time) {
 }
 
 
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 function isScrolledIntoView(elem)
 {
     var docViewTop = $(window).scrollTop();
