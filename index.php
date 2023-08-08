@@ -63,7 +63,7 @@
 		
 		
 		
-		
+<!--		
 		<section class="slider slide--1" id="slide-1">
             <div id="outerContainer">
                 <div id="clockWrap">
@@ -223,7 +223,7 @@
 			<a class="footer__link-top" href="#slide-0">Top<span class="footer__link-top-line"></span></a>
 			<p class="footer__copyright">All images © 2023 TheHumanDesign.com</p>
 		</footer>
-		
+-->		
 		
 		
 		
@@ -622,606 +622,606 @@ tl3.delay(2);
 
 // Start Clock JS
 
-let outer = document.getElementById('outer'),
-        wrapper = document.getElementById('canvaswrapper'),
-        cover = document.getElementById('coverUp'),
-        content = document.getElementById('clockContWrap'),
-        maxWidth  = outer.clientWidth,
-        maxHeight = outer.clientHeight;
-window.addEventListener("resize", resize);
-window.addEventListener("load", resize);
-resize();
-TweenLite.to(cover, 1, {autoAlpha:0});
-function resize(){
-		let scale,
-		width,
-		height,
-		isMax;
-	if(window.innerWidth < window.innerHeight){
-		width = (window.innerWidth)-60;
-		height = (window.innerHeight/1.7)-60;
-		isMax = width >= maxWidth && height >= maxHeight/1.7;
-	}else if(window.innerWidth > window.innerHeight){
-		width = (window.innerWidth/2)-60;
-		height = (window.innerHeight)-60;
-		isMax = width >= (maxWidth/2)-60 && height >= maxHeight-60;
-	}
-
-    scale = Math.min(width/maxWidth, height/maxHeight);
-    outer.style.transform = isMax?'':'scale(' + scale + ')';
-    wrapper.style.width = isMax?'':maxWidth * scale;
-    wrapper.style.height = isMax?'':maxHeight * scale;
-}
-	
-requestAnimationFrame(mainLoop);
-
-function generateGateLineObject() {
-  const gateLineObject = {};
-  const gates = [41, 41, 41, 41, 41, 41, 19, 19, 19, 19, 19, 19, 13, 13, 13, 13, 13, 13, 49, 49, 49, 49, 49, 49, 30, 30, 30, 30, 30, 30, 55, 55, 55, 55, 55, 55, 37, 37, 37, 37, 37, 37, 63, 63, 63, 63, 63, 63, 22, 22, 22, 22, 22, 22, 36, 36, 36, 36, 36, 36];
-  
-  for (let i = 0; i < gates.length; i++) {
-    const gate = gates[i] + (i % 6) * 0.1;
-    const angle = (0.9736 - i * (0.0163)) % (2 * Math.PI);
-    gateLineObject[i] = { gate: gate.toFixed(1), angle: angle.toFixed(4) };
-  }
-  
-  return gateLineObject;
-}
-
-const daGates = generateGateLineObject();
-
-var	sunSym    		= "M12.346,10c0,1.297-1.05,2.346-2.346,2.346c-1.295,0-2.346-1.049-2.346-2.346c0-1.295,1.051-2.345,2.346-2.345C11.296,7.655,12.346,8.705,12.346,10z M20,10c0,5.523-4.478,10-10,10S0,15.523,0,10C0,4.477,4.478,0,10,0S20,4.477,20,10z M17.035,10c0-3.886-3.148-7.037-7.035-7.037S2.963,6.114,2.963,10c0,3.887,3.15,7.037,7.037,7.037S17.035,13.887,17.035,10z", // planet symbol paths
-	earLunSym 		= "M80,39.537c0,5.523-4.479,10-10,10c-5.522,0-10.001-4.478-10.001-10c0-5.522,4.479-10,10.001-10C75.521,29.537,80,34.015,80,39.537z M50,19.999C50,14.476,54.476,10,60,10c5.526,0,10,4.476,10,9.999C70,25.522,65.526,30,60,30C54.476,30,50,25.522,50,19.999z M64.841,19.999c0,3.798-2.723,6.958-6.317,7.648c0.48,0.093,0.974,0.144,1.477,0.144c4.305,0,7.797-3.488,7.797-7.792c0-4.303-3.492-7.793-7.797-7.793c-0.503,0-0.996,0.053-1.477,0.144C62.118,13.041,64.841,16.201,64.841,19.999z M40.751,17.967V2.033c-4.398,0-7.966,3.566-7.966,7.967C32.785,14.4,36.353,17.967,40.751,17.967z M30.661,10c0-5.514,4.486-10,10-10s10,4.486,10,10s-4.486,10-10,10S30.661,15.514,30.661,10z M32.136,10c0,4.701,3.824,8.525,8.524,8.525c4.7,0,8.525-3.824,8.525-8.525c0-4.7-3.825-8.525-8.525-8.525C35.959,1.475,32.136,5.3,32.136,10z M21.475,12.356c-0.479-0.091-0.97-0.144-1.474-0.144c-4.302,0-7.789,3.488-7.789,7.789c0,4.302,3.486,7.787,7.789,7.787c0.504,0,0.996-0.051,1.474-0.144c-3.594-0.689-6.311-3.847-6.311-7.643C15.164,16.206,17.88,13.047,21.475,12.356z M30,20.001C30,25.515,25.515,30,20,30c-5.516,0-10-4.485-10-9.999S14.485,10,20,10C25.515,10,30,14.487,30,20.001z M28.525,20.001c0-4.701-3.825-8.526-8.525-8.526c-4.701,0-8.526,3.825-8.526,8.526s3.825,8.525,8.526,8.525C24.701,28.526,28.525,24.702,28.525,20.001z M10,49.537c-5.515,0-10-4.487-10-10c0-5.512,4.486-10,10-10c5.514,0,10,4.487,10,10C20,45.05,15.515,49.537,10,49.537z M10,48.062c4.701,0,8.525-3.823,8.525-8.525c0-4.7-3.824-8.525-8.525-8.525c-4.701,0-8.525,3.825-8.525,8.525C1.475,44.238,5.3,48.062,10,48.062z M20,52.215c-0.505,0-1,0.05-1.478,0.143c3.596,0.691,6.313,3.848,6.313,7.642c0,3.797-2.716,6.956-6.313,7.643c0.478,0.095,0.973,0.148,1.478,0.148c4.299,0,7.787-3.486,7.787-7.791C27.788,55.701,24.3,52.215,20,52.215z M30,59.999C30,65.517,25.515,70,20,70c-5.516,0-10-4.483-10-10.001C10,54.487,14.485,50,20,50C25.515,50,30,54.487,30,59.999z M28.525,59.999c0-4.697-3.825-8.521-8.525-8.521c-4.701,0-8.526,3.824-8.526,8.521c0,4.703,3.825,8.528,8.526,8.528C24.701,68.527,28.525,64.702,28.525,59.999z M50.66,70c0,5.517-4.486,10-10,10s-10-4.483-10-10c0-5.516,4.486-10,10-10S50.66,64.484,50.66,70z M49.186,70c0-4.699-3.825-8.524-8.525-8.524c-4.701,0-8.524,3.825-8.524,8.524c0,4.7,3.824,8.526,8.524,8.526C45.36,78.526,49.186,74.7,49.186,70z M40.571,62.126V78.06c4.4,0,7.965-3.567,7.965-7.967S44.972,62.126,40.571,62.126z M70,59.999C70,65.524,65.526,70,60,70c-5.524,0-10-4.476-10-10.001C50,54.478,54.476,50,60,50C65.526,50,70,54.478,70,59.999z M55.163,59.999c0-3.797,2.719-6.956,6.315-7.647c-0.479-0.094-0.974-0.143-1.479-0.143c-4.304,0-7.795,3.488-7.795,7.79c0,4.309,3.491,7.797,7.795,7.797c0.505,0,0.999-0.053,1.479-0.148C57.882,66.961,55.163,63.799,55.163,59.999z",
-	nnodeSym 		= "M10.011,1.498l0.002-0.096l-0.001,0.459L10.011,1.498z M9.999,20C4.477,20,0,15.523,0,10S4.477,0,9.999,0C15.522,0,20,4.477,20,10S15.522,20,9.999,20z M15.625,11.623c-0.342,0-0.665,0.074-0.958,0.205c0.093-1.112,0.438-2.265,0.792-3.385c0.381-1.223,0.744-2.375,0.744-3.434c0.002-3.137-3.109-3.59-6.163-3.607h-0.027H9.984C6.932,1.426,3.821,1.873,3.822,5.01c0,1.059,0.362,2.213,0.745,3.434c0.353,1.124,0.7,2.278,0.792,3.392c-0.297-0.134-0.624-0.212-0.97-0.212c-1.315,0-2.383,1.074-2.383,2.391c0,1.318,1.068,2.389,2.383,2.389c1.314,0,2.379-1.07,2.379-2.389c0-0.449-0.131-0.865-0.347-1.225c0.008-0.143,0.02-0.283,0.02-0.428c0-1.545-0.484-3.086-0.911-4.447C5.188,6.826,4.865,5.795,4.865,5.01c0-0.004,0-0.01,0-0.012c0-0.613,0.035-2.188,5.148-2.221c5.112,0.033,5.149,1.607,5.149,2.221c0,0.002,0,0.008,0,0.012c-0.002,0.785-0.326,1.816-0.666,2.904c-0.428,1.359-0.912,2.902-0.912,4.447c0,0.138,0.011,0.271,0.019,0.405c-0.224,0.364-0.358,0.789-0.358,1.247c0,1.318,1.064,2.389,2.381,2.389c1.314,0,2.381-1.07,2.381-2.389C18.006,12.697,16.939,11.623,15.625,11.623z",
-	snodeSym 		= "M10.012,18.139l0.001,0.459l-0.002-0.096L10.012,18.139z M20,10c0,5.523-4.478,10-10.001,10C4.477,20,0,15.523,0,10S4.477,0,9.999,0C15.522,0,20,4.477,20,10z M18.006,5.986c0-1.318-1.066-2.389-2.381-2.389c-1.316,0-2.381,1.071-2.381,2.389c0,0.458,0.135,0.883,0.358,1.247c-0.008,0.135-0.019,0.268-0.019,0.405c0,1.545,0.484,3.088,0.912,4.447c0.34,1.088,0.664,2.119,0.666,2.904c0,0.004,0,0.01,0,0.012c0,0.613-0.037,2.188-5.149,2.221c-5.114-0.033-5.148-1.607-5.148-2.221c0-0.002,0-0.008,0-0.012c0-0.785,0.323-1.816,0.666-2.904c0.427-1.361,0.911-2.902,0.911-4.447c0-0.145-0.011-0.286-0.02-0.428c0.215-0.359,0.347-0.776,0.347-1.225c0-1.318-1.065-2.389-2.379-2.389c-1.315,0-2.383,1.071-2.383,2.389c0,1.317,1.068,2.391,2.383,2.391c0.347,0,0.673-0.079,0.97-0.212c-0.093,1.114-0.439,2.268-0.792,3.392c-0.383,1.221-0.745,2.375-0.745,3.434c-0.001,3.137,3.109,3.584,6.162,3.607h0.029h0.027c3.053-0.018,6.165-0.471,6.163-3.607c0-1.059-0.363-2.211-0.744-3.434c-0.354-1.12-0.699-2.272-0.792-3.384c0.293,0.13,0.616,0.205,0.958,0.205C16.939,8.377,18.006,7.303,18.006,5.986z",
-	plutoSym 		= "M10,0C4.477,0,0,4.476,0,9.999C0,15.523,4.477,20,10,20s10-4.477,10-10.001C20,4.476,15.523,0,10,0z M15.107,16.26c0,0.137-0.111,0.25-0.256,0.25H7.37c-0.144,0-0.259-0.113-0.259-0.25V2.76c0-0.139,0.115-0.25,0.259-0.25h1.806c2.561,0,4.645,2.02,4.645,4.5s-2.084,4.5-4.645,4.5H8.919v3.25h5.935c0.145,0,0.256,0.109,0.256,0.25v1.25H15.107z M9.175,9.758H8.918V4.261h0.257c1.433,0,2.841,1.36,2.841,2.749C12.016,8.398,10.607,9.758,9.175,9.758z",
-	nepSyn  		= "M10,0C4.477,0,0,4.478,0,10s4.477,10,10,10s10-4.478,10-10S15.523,0,10,0zM16.773,6.241l-0.735-0.737v2.715c0,3.087-2.354,5.625-5.353,5.921v1.465h1.459v1.172h-1.459v1.466h-1.17v-1.466H8.055v-1.172h1.461V14.14c-3-0.296-5.352-2.834-5.352-5.921V5.504L3.428,6.241L2.6,5.414l2.168-2.173l2.168,2.173L6.109,6.241L5.333,5.463v2.756c0,2.437,1.828,4.45,4.183,4.74V5.493L8.77,6.241L7.941,5.414l2.168-2.173l2.168,2.173l-0.826,0.827l-0.768-0.768v7.484c2.354-0.29,4.183-2.305,4.183-4.74V5.462L14.094,6.24l-0.83-0.827l2.168-2.173L17.6,5.413L16.773,6.241z",
-	uraSyn 		    = "M10,0C4.477,0,0,4.477,0,10c0,5.522,4.477,10,10,10s10-4.479,10-10C20,4.476,15.523,0,10,0zM10.1,17.037c-2.774,0-5.025-2.1-5.025-4.691c0-2.411,1.958-4.377,4.467-4.639V5.384L8.684,6.187L7.73,5.296l2.498-2.334l2.494,2.334l-0.951,0.891l-0.883-0.823v2.364c2.4,0.355,4.238,2.279,4.238,4.618C15.127,14.938,12.878,17.037,10.1,17.037z M13.693,12.346c0,1.85-1.609,3.352-3.594,3.352c-1.98,0-3.588-1.502-3.588-3.352c0-1.852,1.606-3.353,3.588-3.353C12.084,8.994,13.693,10.495,13.693,12.346z",
-	satSyn  		= "M10,0C4.478,0,0,4.476,0,10.002C0,15.525,4.478,20,10,20s10-4.475,10-9.998C20,4.476,15.522,0,10,0zM13.458,16.63c-1.062,0-1.925-0.861-1.925-1.925c0-0.944,0.584-1.767,1.146-2.562c0.543-0.763,1.053-1.483,1.053-2.249c0-1.518-1.232-2.75-2.75-2.75c-1.514,0-2.748,1.232-2.748,2.75v4.535h-1.1V5.027H5.76V3.929h1.375V2.557h1.1v1.372h1.375v1.099H8.234v2.178c0.699-0.713,1.674-1.158,2.748-1.158c2.123,0,3.848,1.726,3.848,3.849c0,1.117-0.664,2.058-1.257,2.886c-0.483,0.685-0.942,1.33-0.942,1.926c0,0.455,0.371,0.824,0.827,0.824c0.454,0,0.824-0.369,0.824-0.824h1.1C15.382,15.769,14.52,16.63,13.458,16.63z",
-	jupSyn  		= "M10,0C4.477,0,0,4.477,0,9.999S4.477,20,10,20s10-4.479,10-10.001S15.523,0,10,0zM15.131,14.439H13.76v2.723h-1.102v-2.723H3.45v-1.099c2.183-0.571,3.729-2.043,4.573-3.182C9.025,8.805,9.553,7.368,9.553,6.65c0-1.357-1.104-2.465-2.463-2.465c-1.369,0-2.484,1.096-2.484,2.447H3.505c0-1.956,1.608-3.547,3.584-3.547c1.964,0,3.562,1.602,3.562,3.563c0,0.899-0.539,2.537-1.744,4.166c-0.6,0.809-1.479,1.764-2.67,2.524h6.421V3.085h1.102v10.254h1.371L15.131,14.439L15.131,14.439z",
-	marSyn  		= "M12.443,11.059c0,1.934-1.567,3.502-3.5,3.502c-1.935,0-3.502-1.568-3.502-3.502c0-1.932,1.567-3.499,3.502-3.499C10.876,7.56,12.443,9.126,12.443,11.059zM20,10.001C20,15.523,15.523,20,10,20S0,15.523,0,10.001C0,4.478,4.477,0,10,0S20,4.477,20,10.001z M15.617,4.382l-2.9,0.002L12.715,5.49l0.998-0.002L11.73,7.474C10.959,6.872,9.999,6.5,8.943,6.5c-2.52,0-4.562,2.04-4.562,4.559c0,2.52,2.042,4.563,4.562,4.563s4.562-2.043,4.562-4.563c0-1.064-0.38-2.03-0.991-2.805l1.995-1.994l-0.002,1.022h1.109L15.617,4.382z",
-	venSyn   		= "M10,0C4.477,0,0,4.477,0,9.998C0,15.521,4.477,20,10,20s10-4.479,10-10.002C20,4.477,15.523,0,10,0zM10.604,13.375v1.16h1.375v1.102h-1.375v1.4H9.505v-1.4H8.129v-1.102h1.375v-1.154c-2.636-0.262-4.701-2.491-4.701-5.195c0-2.879,2.344-5.224,5.223-5.224s5.222,2.345,5.222,5.224C15.247,10.87,13.211,13.09,10.604,13.375z M14.148,8.186c0,2.273-1.85,4.123-4.123,4.123c-2.272,0-4.123-1.85-4.123-4.123s1.851-4.123,4.123-4.123C12.3,4.063,14.148,5.912,14.148,8.186z",
-	merSyn   		= "M10.021,6.759c1.727,0,3.125,1.402,3.125,3.127c0,1.721-1.398,3.122-3.125,3.122c-1.722,0-3.123-1.401-3.123-3.122C6.898,8.161,8.301,6.759,10.021,6.759z M20,10c0,5.522-4.477,10-10,10S0,15.522,0,10C0,4.478,4.477,0,10,0S20,4.478,20,10z M14.548,4.789L13.784,4.08c-0.015,0.018-1.562,1.638-3.763,1.638c-2.203,0-3.801-1.628-3.816-1.645L5.831,4.437L5.453,4.795c0.053,0.057,0.954,0.98,2.39,1.541c-1.188,0.735-1.985,2.05-1.985,3.548c0,2.12,1.595,3.874,3.646,4.133v1.049H8.201v1.041h1.303v1.301h1.042v-1.301h1.302v-1.041h-1.302v-1.049c2.056-0.259,3.644-2.013,3.644-4.133c0-1.501-0.795-2.817-1.986-3.552C13.62,5.769,14.497,4.847,14.548,4.789z",
-	mooSyn  		= "M15.92,9.999c0,3.276-2.663,5.938-5.938,5.938c-0.338,0-0.67-0.027-0.998-0.084c0.832-0.342,1.59-0.865,2.218-1.541c1.093-1.178,1.692-2.705,1.692-4.313c0-1.606-0.601-3.137-1.692-4.313c-0.628-0.677-1.386-1.198-2.218-1.543C9.313,4.088,9.645,4.06,9.982,4.06C13.257,4.06,15.92,6.723,15.92,9.999zM20,9.999C20,15.525,15.522,20,10,20S0,15.525,0,9.999C0,4.474,4.478,0,10,0S20,4.473,20,9.999z M17.019,9.999c0-1.879-0.73-3.646-2.062-4.978C13.629,3.693,11.859,2.96,9.98,2.96c-1.119,0-2.232,0.27-3.222,0.781l-1.72,0.887l1.93,0.149c2.707,0.209,4.826,2.505,4.826,5.221c0,2.717-2.119,5.014-4.826,5.221l-1.93,0.15l1.72,0.887c0.989,0.512,2.103,0.779,3.222,0.779c1.879,0,3.647-0.73,4.977-2.061C16.287,13.645,17.019,11.877,17.019,9.999z",
-	earSyn 		    = "M9.324,10.556V17C5.833,17,3,14.116,3,10.556H9.324zM9.324,3C5.833,3,3,5.885,3,9.444h6.324V3zM10.676,10.556V17C14.167,17,17,14.116,17,10.556H10.676z M10.676,9.444H17C17,5.885,14.167,3,10.676,3V9.444z M20,10c0,5.523-4.477,10-10,10S0,15.523,0,10C0,4.477,4.477,0,10,0S20,4.477,20,10z M18.795,10.002c0-4.718-3.936-8.542-8.792-8.542c-4.856,0-8.797,3.824-8.797,8.542c0,4.717,3.94,8.538,8.797,8.538C14.859,18.54,18.795,14.72,18.795,10.002z";
-
-var pace=12;
-var sunMoved=false;
-const ctx = canvas.getContext("2d");
-const TAU = Math.PI * 2;
-const centerOnPlanetName = "EarthLine";
-const globalMatrix = [1,0,0,1,0,0];
-const solSystem = {};
-const planets = [];
-const planetCommon = {
-      x: 0, y: 0, cos: 1, sin: 0,
-      update(time) {
-		//this.ang = parseFloat((this.startAng - this.orbitalSpeed/pace * time).toFixed(4)); // for gate location trackingvery  high CPU
-		this.ang = this.startAng - this.orbitalSpeed/pace * time;
-        this.cos = Math.cos(this.ang);
-        this.sin = Math.sin(this.ang);
-        if (this.orbits && this.maxDist == 0) {
-            this.x = this.orbits.x + this.cos * this.dist;
-            this.y = this.orbits.y + this.sin * this.dist;
-        } else if (this.orbits && this.maxDist > 0 && this.distTo > this.maxDist) {
-			this.dist=this.dist-(this.distTo-this.maxDist);
-            this.x = this.orbits.x + this.cos * this.dist;
-            this.y = this.orbits.y + this.sin * this.dist;
-        }else  if (this.orbits && this.maxDist > 0 && this.distTo < this.maxDist && sunMoved==true) {
-			this.dist=this.dist+(this.maxDist-this.distTo);
-            this.x = this.orbits.x + this.cos * this.dist;
-            this.y = this.orbits.y + this.sin * this.dist;
-		}else  if (this.orbits && this.maxDist > 0 && sunMoved==false) {
-            this.x = this.orbits.x + this.cos * this.dist;
-            this.y = this.orbits.y + this.sin * this.dist;
-		}
-     },
-	draw(ctx, globalMat) {
-		ctx.setTransform(...globalMat);
-		ctx.transform(this.cos, this.sin, -this.sin, this.cos, this.x, this.y);
-		if (this.type === 1){ // planet, lunar, node symbols			
-			symbo(this.symbo, this.fill,this.stroke, -this.ang);
-		}else if (this.type === 7){ // moon and nodes
-			symboSmall(this.symbo, this.fill, this.stroke);
-		}else if (this.type === 2){ // sun top
-			sunMoved=true;
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 3, 3, -this.ang);
-			symboLarge(this.symbo, this.fill, this.stroke);
-		}else if (this.type === 3){ // sun line
-			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
-			//console.log(daGates);
-			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);
-			const ax = Math.cos(this.dirTo);
-			const ay = Math.sin(this.dirTo);
-			ctx.rotate(-Math.PI);
-				
-			ctx.beginPath();
-			ctx.lineCap = "square";
-			ctx.lineWidth = 21;
-			ctx.lineTo(0, 0);
-			ctx.lineTo(ax * (344-this.distTo), ay * (344-this.distTo));
-			ctx.strokeStyle = "#aaaaaa";
-			ctx.stroke();
-			ctx.closePath();
-			
-			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);
-			
-			ctx.translate(ax * (406-this.distTo), ay * (406-this.distTo));
-			ctx.beginPath();
-			ctx.lineWidth = 13;
-			ctx.strokeStyle = "#aaaaaa";
-			ctx.arc(0,0,45,0,2*Math.PI,true);
-			ctx.stroke();
-			ctx.closePath();
-			
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			
-			ctx.beginPath();
-			ctx.lineWidth = 3;
-			ctx.strokeStyle = "#fde992";
-			ctx.arc(0,0,45,0,2*Math.PI,true);
-			ctx.stroke();
-			ctx.closePath();
-			ctx.translate(ax * -(406-this.distTo), ay * -(406-this.distTo));
-			
-			setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
-			ctx.beginPath();
-			ctx.lineCap = "square";
-			ctx.lineWidth = 21;
-			ctx.lineTo(0, 0);
-			ctx.lineTo(ax * (344-this.distTo), ay * (344-this.distTo));
-			ctx.strokeStyle = "#aaaaaa";
-			ctx.stroke();
-			ctx.closePath();
-			
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			
-			ctx.beginPath();
-			ctx.lineCap = "round";
-			ctx.lineWidth = 3;
-			ctx.lineTo(0, 0);
-			ctx.lineTo(ax * (356-this.distTo), ay * (356-this.distTo));
-			ctx.strokeStyle = "#fde992";
-			ctx.stroke();
-			ctx.closePath();
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			
-			ctx.beginPath();
-			ctx.lineCap = "butt";
-			ctx.lineTo(ax * (522-this.distTo), ay * (522-this.distTo));
-			ctx.lineTo(ax * (535-this.distTo), ay * (535-this.distTo));
-			ctx.strokeStyle = "#92A6FD";
-			ctx.lineWidth = 7;
-			ctx.stroke();
-			ctx.closePath();
-			
-		}else if (this.type === 4){ // earth  line
-		
-			setShadow(ctx, "rgba(0,0,0,0.4)", 0, 6, 5, -this.ang);
-			ctx.beginPath();
-			ctx.lineCap = "butt";
-			ctx.lineWidth = 34;
-			ctx.strokeStyle = this.stroke;
-			ctx.arc(0,0,36,0,2*Math.PI,true);
-			ctx.stroke();
-			ctx.closePath();
-			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
-			//console.log(daGates);
-			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);
-			ctx.beginPath();
-			ctx.lineCap = "round";
-			ctx.lineWidth = 17;
-			ctx.lineTo(-120, 0);
-			ctx.lineTo(0, 0);
-			ctx.strokeStyle = "#aaaaaa";
-			ctx.stroke();
-			ctx.closePath();
-			
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			
-			ctx.beginPath();
-			ctx.lineCap = "round";
-			ctx.lineWidth = 3;
-			ctx.lineTo(-120, 0);
-			ctx.lineTo(0, 0);
-			ctx.strokeStyle = "#fde992";
-			ctx.stroke();
-			ctx.closePath();
-			
-			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);						
-			ctx.beginPath();
-			ctx.lineCap = "round";
-			ctx.lineWidth = 13;
-			ctx.lineTo(0, 0);
-			ctx.lineTo(445, 0);
-			ctx.strokeStyle = "#aaaaaa";
-			ctx.stroke();
-			ctx.closePath();
-			
-			ctx.beginPath();  // iOS hack
-			ctx.lineTo(0, 0); // iOS hack
-			ctx.stroke();     // iOS hack
-			ctx.closePath();  // iOS hack
-			ctx.beginPath();
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			ctx.lineCap = "round";
-			ctx.lineWidth = 3;
-			ctx.lineTo(0, 0);
-			ctx.lineTo(448, 0);
-			ctx.strokeStyle = "#fde992";
-			ctx.stroke();
-			ctx.closePath();
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			ctx.beginPath();
-			ctx.lineCap = "butt";
-			ctx.lineWidth = 7;
-			ctx.lineTo(522, 0);
-			ctx.lineTo(535, 0);
-			ctx.strokeStyle = "#92A6FD";
-			ctx.stroke();
-			ctx.closePath();
-		}else if (this.type === 9){ //  lunar phaze
-			setShadow(ctx, "rgba(0,0,0,0.2)", 0, 3, 3, -this.ang);
-			ctx.beginPath();
-			ctx.lineCap = "butt";
-			ctx.lineWidth = 34;
-			ctx.strokeStyle = this.stroke;
-			ctx.arc(0,0,36,0,2*Math.PI,true);
-			ctx.stroke();
-			ctx.closePath();
-			symboMoon(this.symbo, this.fill);
-		}
-		if (this.dirTo !== undefined && (this.type ==5 || this.type === 6)) {// planet, lunar, node lines
-			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
-			//console.log(daGates);
-			const ax = Math.cos(this.dirTo);
-			const ay = Math.sin(this.dirTo);
-			ctx.rotate(-Math.PI);
-			if(this.type === 5){ // moon & nodes line
-					ctx.beginPath();
-					ctx.lineWidth = 8;
-					setShadow(ctx, "rgba(0,0,0,0.75)", 0, 2, 3, -this.ang);
-					ctx.lineCap = "round";
-					ctx.lineTo(0, 0);
-					ctx.lineTo(ax * 28, ay * 28);
-					ctx.strokeStyle = "#aaaaaa";	
-					ctx.stroke();
-					ctx.closePath();
-					ctx.beginPath();
-					ctx.lineWidth = 1;
-					setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
-					ctx.lineCap = "round";
-					ctx.lineTo(0, 0);
-					ctx.lineTo(ax * 30, ay * 30);
-					ctx.strokeStyle = "#fde992";
-					ctx.stroke();
-					ctx.closePath();
-			} else if (this.type === 6 && sunMoved==true) {  // planets lines
-			//if(this.idnum==13){
-				//daGates = parseFloat(findGate(gateLineObject,this.dirTo+this.ang).toFixed(3));
-				//console.log(daGates);
-			//}
-				setShadow(ctx, "rgba(0,0,0,0.7)", 0, 5, 6, -this.ang);
-				
-				ctx.beginPath();
-				ctx.lineWidth = 9;
-				ctx.lineTo(0, 0);
-				ctx.lineCap = "square";
-				ctx.lineTo(this.dist, 0);
-				ctx.strokeStyle = "#aaaaaa";
-				ctx.stroke();
-				ctx.closePath();
-				
-				setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
-				
-				ctx.lineWidth = 1;
-				ctx.lineTo(0, 0);
-				ctx.lineCap = "square";
-				ctx.lineTo(this.dist, 0);
-				ctx.strokeStyle = "#fde992";
-				ctx.stroke();
-				ctx.closePath();
-				
-				setShadow(ctx, "rgba(0,0,0,0.3)", 0, 2, 3, -this.ang);
-				
-				ctx.beginPath();
-				ctx.lineWidth = 11;
-				ctx.lineTo(this.dist, 0);
-				ctx.lineCap = "square";
-				ctx.lineTo(this.dist/3, 0);
-				ctx.strokeStyle = "#aaaaaa";
-				ctx.stroke();
-				ctx.closePath();
-				
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-				
-				ctx.beginPath();
-				ctx.lineWidth = 2;
-				ctx.lineTo(this.dist, 0);
-				ctx.lineCap = "square";
-				ctx.lineTo(this.dist/3, 0);
-				ctx.strokeStyle = "#fde992";
-				ctx.stroke();
-				ctx.closePath();
-				
-				setShadow(ctx, "rgba(0,0,0,0.3)", 0, 2, 3, -this.ang);
-				
-				ctx.beginPath();
-				ctx.lineWidth = 13;
-				ctx.lineTo(this.dist, 0);
-				ctx.lineCap = "square";
-				ctx.lineTo(this.dist/2, 0);
-				ctx.strokeStyle = "#aaaaaa";
-				ctx.stroke();
-				ctx.closePath();
-				
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-				
-				ctx.beginPath();
-				ctx.lineWidth = 3;
-				ctx.lineTo(this.dist-50, 0);
-				ctx.lineCap = "square";
-				ctx.lineTo(this.dist/2, 0);
-				ctx.strokeStyle = "#fde992";
-				ctx.stroke();
-				ctx.closePath();
-				
-				setShadow(ctx, "rgba(0,0,0,0.6)", 0, 2, 3, -this.ang);
-				
-				ctx.beginPath();
-				ctx.lineWidth = 13;
-				ctx.lineTo(this.dist+36, 0);
-				ctx.lineCap = "round";
-				ctx.lineTo(this.dist-36, 0);
-				ctx.strokeStyle = "#fde992";
-				ctx.stroke();
-				ctx.closePath();
-
-				setShadow(ctx, "rgba(0,0,0,0.75)", 0, 2, 3, -this.ang);
-				ctx.beginPath();
-				ctx.lineCap = "round";
-				ctx.lineWidth = 8;
-				ctx.lineTo(ax * 33, ay * 33);
-				ctx.lineTo(0, 0);
-				ctx.strokeStyle = "#aaaaaa";
-				ctx.stroke();
-				ctx.closePath();
-				
-				setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
-				
-				ctx.beginPath();
-				ctx.lineCap = "round";
-				ctx.lineWidth = 1;
-				ctx.lineTo(ax * 35, ay * 35);
-				ctx.lineTo(0, 0);
-				ctx.strokeStyle = "#fde992";
-				ctx.stroke();
-				ctx.closePath();
-			
-			}
-			ctx.beginPath();
-			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-			ctx.lineCap = "butt";
-			ctx.lineWidth = 7;
-			ctx.lineTo(ax * (522-this.distTo), ay * (522-this.distTo));
-			ctx.lineTo(ax * (535-this.distTo), ay * (535-this.distTo));
-			ctx.strokeStyle = "#92A6FD";
-			ctx.stroke();
-			ctx.closePath();
-		}
-		
-	},
-	directionTo(planet) {
-		if (planet !== this) {
-			//this.dirTo =  parseFloat((Math.atan2(planet.y - this.y, planet.x - this.x) - this.ang).toFixed(4)); // high CPU
-			this.dirTo =  Math.atan2(planet.y - this.y, planet.x - this.x) - this.ang;
-			this.distTo = Math.hypot(planet.y - this.y, planet.x - this.x);
-		} else {
-			this.dirTo = undefined;
-		}
-	}
-	
-};
-const planet = (idnum, name, orbitsName, dist, orbitalSpeed, startAng, fill, stroke, type, maxDist, symbo) => {
-    planets.push(solSystem[name] = {
-        orbits: solSystem[orbitsName],
-        dist,
-        orbitalSpeed,
-        startAng,
-        fill,
-		stroke,
-		type,
-		maxDist,
-        symbo,
-        idnum,
-        ...planetCommon,
-     });
-};
-
-
-var sunPosD = findAngle(gateLineObject,52.1);
-var merPosD = findAngle(gateLineObject,35.3);
-var venPosD = findAngle(gateLineObject,52.3);
-var mooPosD = findAngle(gateLineObject,16.6);
-var nnoPosD = findAngle(gateLineObject,44.5);
-var marPosD = findAngle(gateLineObject, 4.5);
-var jupPosD = findAngle(gateLineObject,23.3);
-var satPosD = findAngle(gateLineObject,31.1);
-var uraPosD = findAngle(gateLineObject,28.2);
-var nepPosD = findAngle(gateLineObject, 5.1);
-var pluPosD = findAngle(gateLineObject,18.6);
-
-planet(1, "SunLine",          undefined,    0,          1,         sunPosD,  "#fde992", "#92A6FD",    3, 0); // #92A6FD
-planet(4, "EarthLine",        "SunLine",   128,         1, sunPosD+Math.PI,  "#92A6FD", "#fde992",    4, 0);
-planet(7, "NorthNodeLine",  "EarthLine",    70,   -0.0537,         nnoPosD,  "#92A6FD", "#fde992",    5, 0);
-planet(8, "SouthNodeLine",  "EarthLine",    70,   -0.0537, nnoPosD-Math.PI,  "#92A6FD", "#fde992",    5, 0);
-planet(13,"PlutoLine",        "SunLine",   430,     0.004,         pluPosD,  "#92A6FD", "#fde992",    6, 430);
-planet(12,"NeptuneLine",      "SunLine",   395,    0.0061,         nepPosD,  "#92A6FD", "#fde992",    6, 395);
-planet(11,"UranusLine",       "SunLine",   360,    0.0119,         uraPosD,  "#92A6FD", "#fde992",    6, 360);
-planet(10,"SaturnLine",       "SunLine",   325,    0.0339,         satPosD,  "#92A6FD", "#fde992",    6, 325);
-planet(9, "JupiterLine",      "SunLine",   290,    0.0842,         jupPosD,  "#92A6FD", "#fde992",    6, 290);
-planet(5, "MarsLine",         "SunLine",   255,    0.5312,         marPosD,  "#92A6FD", "#fde992",    6, 255);
-planet(3, "VenusLine",        "SunLine",  92.49,   1.6243,         venPosD,  "#92A6FD", "#fde992",    6, 0);
-planet(2, "MercuryLine",      "SunLine",  50.65,   4.1477,         merPosD,  "#92A6FD", "#fde992",    6, 0);
-planet(6, "MoonLine",       "EarthLine",    35,     13.37,         mooPosD,  "#92A6FD", "#fde992",    5, 0);
-
-planet(1, "Sun",              undefined,     0,         1,         sunPosD,  "#fde992", "#aaaaaa",    2, 0,   sunSym);
-planet(9, "EarthLunar",       "SunLine",   128,         1, sunPosD+Math.PI,  "#fde992", "#aaaaaa",    9, 0,   earLunSym);
-planet(7, "NorthNode",      "EarthLine",    70,   -0.0537,         nnoPosD,  "#aaaaaa", "#fde992",    7, 0,   nnodeSym);
-planet(8, "SouthNode",      "EarthLine",    70,   -0.0537, nnoPosD-Math.PI,  "#aaaaaa", "#fde992",    7, 0,   nnodeSym);
-planet(13,"Pluto",            "SunLine",   430,     0.004,         pluPosD,  "#aaaaaa", "#fde992",    1, 430, plutoSym);
-planet(12,"Neptune",          "SunLine",   395,    0.0061,         nepPosD,  "#aaaaaa", "#fde992",    1, 395, nepSyn);
-planet(11,"Uranus",           "SunLine",   360,    0.0119,         uraPosD,  "#aaaaaa", "#fde992",    1, 360, uraSyn);
-planet(10,"Saturn",           "SunLine",   325,    0.0339,         satPosD,  "#aaaaaa", "#fde992",    1, 325, satSyn);
-planet(9, "Jupiter",          "SunLine",   290,    0.0842,         jupPosD,  "#aaaaaa", "#fde992",    1, 290, jupSyn);
-planet(5, "Mars",             "SunLine",   256,    0.5312,         marPosD,  "#aaaaaa", "#fde992",    1, 255, marSyn);
-planet(3, "Venus",            "SunLine", 92.49,    1.6243,         venPosD,  "#aaaaaa", "#fde992",    1, 0,   venSyn);
-planet(2, "Mercury",          "SunLine", 50.65,    4.1477,         merPosD,  "#aaaaaa", "#fde992",    1, 0,   merSyn);
-planet(6, "Moon",           "EarthLine",    35,     13.37,         mooPosD,  "#aaaaaa", "#fde992",    7, 0,   mooSyn);
-planet(4, "Earth",            "SunLine",   128,         1, sunPosD+Math.PI,  "#aaaaaa", "#fde992",    1, 0,   earSyn);
-
-function centerOn(cx, cy, planet) {
-	globalMatrix[4] = cx - planet.x;
-    globalMatrix[5] = cy - planet.y;
-}
-function symboMoon(path,fill){
-	ctx.translate(-50,-50);
-	ctx.scale(1.25, 1.25);
-	ctx.fillStyle = fill;
-	setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
-	var p = new Path2D(path);
-	ctx.fill(p);
-}
-function symboSmall(path,fill,stroke,angle){
-	ctx.rotate(angle);
-			setShadow(ctx, "rgba(0,0,0,0.5)", 0, 3, 5, -this.ang);
-			ctx.beginPath();
-			ctx.fillStyle = stroke;
-			ctx.arc(0,0,16,0,2*Math.PI,true);
-			ctx.fill();
-			ctx.closePath();
-	setShadow(ctx, "rgba(255,255,255,1)", 0, -1, 0, -this.ang);
-	ctx.translate(-15,-15);
-	ctx.scale(1.5, 1.5);
-	ctx.fillStyle = fill;
-	var p = new Path2D(path);
-	ctx.fill(p);
-}
-function symbo(path,fill,stroke,angle){
-	
-	ctx.rotate(angle);
-			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 3, 5, -this.ang);
-			ctx.beginPath();
-			ctx.fillStyle = stroke;
-			ctx.arc(0,0,21,0,2*Math.PI,true);
-			ctx.fill();
-			ctx.closePath();
-	setShadow(ctx, "rgba(255,255,255,1)", 0, -1, 0, -this.ang);
-	ctx.translate(-20,-20);
-	ctx.scale(2, 2);
-	ctx.fillStyle = fill;
-	var p = new Path2D(path);
-	ctx.fill(p);
-}
-function symboLarge(path,fill,stroke){
-			setShadow(ctx, "rgba(0,0,0,0.4)", 0, 2, 2, -this.ang);
-			ctx.beginPath();
-			ctx.fillStyle = stroke;
-			ctx.arc(0,0,21,0,2*Math.PI,true);
-			ctx.fill();
-			ctx.closePath();
-	ctx.translate(-20,-20);
-	ctx.scale(2, 2);
-	ctx.strokeStyle = "rgba(0,0,0,0)";
-	ctx.lineWidth = 1;
-	ctx.fillStyle = fill;
-	var p = new Path2D(path);
-	ctx.stroke(p);
-	ctx.fill(p);
-}
-function setShadow(ctx, fill, ox, oy, blur, angle) {
-	ctx.rotate(angle);
-	ctx.shadowColor = fill;
-	ctx.shadowOffsetX = ox;
-	ctx.shadowOffsetY = oy;
-	ctx.shadowBlur = blur;
-	ctx.rotate(-angle);
-}
-function findAngle(gateLineObject, gate) {
-
-  for (var i = 0; i < Object.keys(gateLineObject).length; i++) {
-    if (gateLineObject[i].gate == gate) {
-      return gateLineObject[i].angle+Math.PI;
-    }
-  }
-}
-function findGate(gateLineObject, targetNumber) {
-  var closestAngle = 0;
-  var closestAngleDifference = Math.abs(targetNumber - gateLineObject[0].angle);
-  for (var i = 0; i < Object.keys(gateLineObject).length; i++) {
-    var currentAngleDifference = Math.abs(targetNumber - gateLineObject[i].angle);
-    if (currentAngleDifference < closestAngleDifference) {
-      closestAngleDifference = currentAngleDifference;
-      closestAngle = gateLineObject[i].gate;
-    }
-  }
-  return closestAngle;
-}
-function mainLoop(time) {
-	
-	isElementInView = Utils.isElementInView($('#canvas'), false);
-	
-	if (isElementInView) {
-		paused=false;
-	} else {
-		paused=true;
-	}
-	if(paused){}else{
-    time /= 1000;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    planets.forEach(planet => planet.update(time));
-    planets.forEach(planet => planet.directionTo(solSystem[centerOnPlanetName]));
-    centerOn(ctx.canvas.width * 0.5, ctx.canvas.height * 0.5, solSystem[centerOnPlanetName]);
-
-    planets.forEach(planet => planet.draw(ctx, globalMatrix));
-	}
-    requestAnimationFrame(mainLoop);
-}
-
-
-
-function isScrolledIntoView(elem)
-{
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
-
-    var elemTop = $(elem).offset().top;
-    var elemBottom = elemTop + $(elem).height();
-
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-}
-function Utils() {
-
-}
-
-Utils.prototype = {
-    constructor: Utils,
-    isElementInView: function (element, fullyInView) {
-        var pageTop = $(window).scrollTop();
-        var pageBottom = pageTop + $(window).height();
-        var elementTop = $(element).offset().top;
-        var elementBottom = elementTop + $(element).height();
-
-        if (fullyInView === true) {
-            return ((pageTop < elementTop) && (pageBottom > elementBottom));
-        } else {
-            return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
-        }
-    }
-};
-
-var Utils = new Utils();
+//let outer = document.getElementById('outer'),
+//        wrapper = document.getElementById('canvaswrapper'),
+//        cover = document.getElementById('coverUp'),
+//        content = document.getElementById('clockContWrap'),
+//        maxWidth  = outer.clientWidth,
+//        maxHeight = outer.clientHeight;
+//window.addEventListener("resize", resize);
+//window.addEventListener("load", resize);
+//resize();
+//TweenLite.to(cover, 1, {autoAlpha:0});
+//function resize(){
+//		let scale,
+//		width,
+//		height,
+//		isMax;
+//	if(window.innerWidth < window.innerHeight){
+//		width = (window.innerWidth)-60;
+//		height = (window.innerHeight/1.7)-60;
+//		isMax = width >= maxWidth && height >= maxHeight/1.7;
+//	}else if(window.innerWidth > window.innerHeight){
+//		width = (window.innerWidth/2)-60;
+//		height = (window.innerHeight)-60;
+//		isMax = width >= (maxWidth/2)-60 && height >= maxHeight-60;
+//	}
+//
+//    scale = Math.min(width/maxWidth, height/maxHeight);
+//    outer.style.transform = isMax?'':'scale(' + scale + ')';
+//    wrapper.style.width = isMax?'':maxWidth * scale;
+//    wrapper.style.height = isMax?'':maxHeight * scale;
+//}
+//	
+//requestAnimationFrame(mainLoop);
+//
+//function generateGateLineObject() {
+//  const gateLineObject = {};
+//  const gates = [41, 41, 41, 41, 41, 41, 19, 19, 19, 19, 19, 19, 13, 13, 13, 13, 13, 13, 49, 49, 49, 49, 49, 49, 30, 30, 30, 30, 30, 30, 55, 55, 55, 55, 55, 55, 37, 37, 37, 37, 37, 37, 63, 63, 63, 63, 63, 63, 22, 22, 22, 22, 22, 22, 36, 36, 36, 36, 36, 36];
+//  
+//  for (let i = 0; i < gates.length; i++) {
+//    const gate = gates[i] + (i % 6) * 0.1;
+//    const angle = (0.9736 - i * (0.0163)) % (2 * Math.PI);
+//    gateLineObject[i] = { gate: gate.toFixed(1), angle: angle.toFixed(4) };
+//  }
+//  
+//  return gateLineObject;
+//}
+//
+//const daGates = generateGateLineObject();
+//
+//var	sunSym    		= "M12.346,10c0,1.297-1.05,2.346-2.346,2.346c-1.295,0-2.346-1.049-2.346-2.346c0-1.295,1.051-2.345,2.346-2.345C11.296,7.655,12.346,8.705,12.346,10z M20,10c0,5.523-4.478,10-10,10S0,15.523,0,10C0,4.477,4.478,0,10,0S20,4.477,20,10z M17.035,10c0-3.886-3.148-7.037-7.035-7.037S2.963,6.114,2.963,10c0,3.887,3.15,7.037,7.037,7.037S17.035,13.887,17.035,10z", // planet symbol paths
+//	earLunSym 		= "M80,39.537c0,5.523-4.479,10-10,10c-5.522,0-10.001-4.478-10.001-10c0-5.522,4.479-10,10.001-10C75.521,29.537,80,34.015,80,39.537z M50,19.999C50,14.476,54.476,10,60,10c5.526,0,10,4.476,10,9.999C70,25.522,65.526,30,60,30C54.476,30,50,25.522,50,19.999z M64.841,19.999c0,3.798-2.723,6.958-6.317,7.648c0.48,0.093,0.974,0.144,1.477,0.144c4.305,0,7.797-3.488,7.797-7.792c0-4.303-3.492-7.793-7.797-7.793c-0.503,0-0.996,0.053-1.477,0.144C62.118,13.041,64.841,16.201,64.841,19.999z M40.751,17.967V2.033c-4.398,0-7.966,3.566-7.966,7.967C32.785,14.4,36.353,17.967,40.751,17.967z M30.661,10c0-5.514,4.486-10,10-10s10,4.486,10,10s-4.486,10-10,10S30.661,15.514,30.661,10z M32.136,10c0,4.701,3.824,8.525,8.524,8.525c4.7,0,8.525-3.824,8.525-8.525c0-4.7-3.825-8.525-8.525-8.525C35.959,1.475,32.136,5.3,32.136,10z M21.475,12.356c-0.479-0.091-0.97-0.144-1.474-0.144c-4.302,0-7.789,3.488-7.789,7.789c0,4.302,3.486,7.787,7.789,7.787c0.504,0,0.996-0.051,1.474-0.144c-3.594-0.689-6.311-3.847-6.311-7.643C15.164,16.206,17.88,13.047,21.475,12.356z M30,20.001C30,25.515,25.515,30,20,30c-5.516,0-10-4.485-10-9.999S14.485,10,20,10C25.515,10,30,14.487,30,20.001z M28.525,20.001c0-4.701-3.825-8.526-8.525-8.526c-4.701,0-8.526,3.825-8.526,8.526s3.825,8.525,8.526,8.525C24.701,28.526,28.525,24.702,28.525,20.001z M10,49.537c-5.515,0-10-4.487-10-10c0-5.512,4.486-10,10-10c5.514,0,10,4.487,10,10C20,45.05,15.515,49.537,10,49.537z M10,48.062c4.701,0,8.525-3.823,8.525-8.525c0-4.7-3.824-8.525-8.525-8.525c-4.701,0-8.525,3.825-8.525,8.525C1.475,44.238,5.3,48.062,10,48.062z M20,52.215c-0.505,0-1,0.05-1.478,0.143c3.596,0.691,6.313,3.848,6.313,7.642c0,3.797-2.716,6.956-6.313,7.643c0.478,0.095,0.973,0.148,1.478,0.148c4.299,0,7.787-3.486,7.787-7.791C27.788,55.701,24.3,52.215,20,52.215z M30,59.999C30,65.517,25.515,70,20,70c-5.516,0-10-4.483-10-10.001C10,54.487,14.485,50,20,50C25.515,50,30,54.487,30,59.999z M28.525,59.999c0-4.697-3.825-8.521-8.525-8.521c-4.701,0-8.526,3.824-8.526,8.521c0,4.703,3.825,8.528,8.526,8.528C24.701,68.527,28.525,64.702,28.525,59.999z M50.66,70c0,5.517-4.486,10-10,10s-10-4.483-10-10c0-5.516,4.486-10,10-10S50.66,64.484,50.66,70z M49.186,70c0-4.699-3.825-8.524-8.525-8.524c-4.701,0-8.524,3.825-8.524,8.524c0,4.7,3.824,8.526,8.524,8.526C45.36,78.526,49.186,74.7,49.186,70z M40.571,62.126V78.06c4.4,0,7.965-3.567,7.965-7.967S44.972,62.126,40.571,62.126z M70,59.999C70,65.524,65.526,70,60,70c-5.524,0-10-4.476-10-10.001C50,54.478,54.476,50,60,50C65.526,50,70,54.478,70,59.999z M55.163,59.999c0-3.797,2.719-6.956,6.315-7.647c-0.479-0.094-0.974-0.143-1.479-0.143c-4.304,0-7.795,3.488-7.795,7.79c0,4.309,3.491,7.797,7.795,7.797c0.505,0,0.999-0.053,1.479-0.148C57.882,66.961,55.163,63.799,55.163,59.999z",
+//	nnodeSym 		= "M10.011,1.498l0.002-0.096l-0.001,0.459L10.011,1.498z M9.999,20C4.477,20,0,15.523,0,10S4.477,0,9.999,0C15.522,0,20,4.477,20,10S15.522,20,9.999,20z M15.625,11.623c-0.342,0-0.665,0.074-0.958,0.205c0.093-1.112,0.438-2.265,0.792-3.385c0.381-1.223,0.744-2.375,0.744-3.434c0.002-3.137-3.109-3.59-6.163-3.607h-0.027H9.984C6.932,1.426,3.821,1.873,3.822,5.01c0,1.059,0.362,2.213,0.745,3.434c0.353,1.124,0.7,2.278,0.792,3.392c-0.297-0.134-0.624-0.212-0.97-0.212c-1.315,0-2.383,1.074-2.383,2.391c0,1.318,1.068,2.389,2.383,2.389c1.314,0,2.379-1.07,2.379-2.389c0-0.449-0.131-0.865-0.347-1.225c0.008-0.143,0.02-0.283,0.02-0.428c0-1.545-0.484-3.086-0.911-4.447C5.188,6.826,4.865,5.795,4.865,5.01c0-0.004,0-0.01,0-0.012c0-0.613,0.035-2.188,5.148-2.221c5.112,0.033,5.149,1.607,5.149,2.221c0,0.002,0,0.008,0,0.012c-0.002,0.785-0.326,1.816-0.666,2.904c-0.428,1.359-0.912,2.902-0.912,4.447c0,0.138,0.011,0.271,0.019,0.405c-0.224,0.364-0.358,0.789-0.358,1.247c0,1.318,1.064,2.389,2.381,2.389c1.314,0,2.381-1.07,2.381-2.389C18.006,12.697,16.939,11.623,15.625,11.623z",
+//	snodeSym 		= "M10.012,18.139l0.001,0.459l-0.002-0.096L10.012,18.139z M20,10c0,5.523-4.478,10-10.001,10C4.477,20,0,15.523,0,10S4.477,0,9.999,0C15.522,0,20,4.477,20,10z M18.006,5.986c0-1.318-1.066-2.389-2.381-2.389c-1.316,0-2.381,1.071-2.381,2.389c0,0.458,0.135,0.883,0.358,1.247c-0.008,0.135-0.019,0.268-0.019,0.405c0,1.545,0.484,3.088,0.912,4.447c0.34,1.088,0.664,2.119,0.666,2.904c0,0.004,0,0.01,0,0.012c0,0.613-0.037,2.188-5.149,2.221c-5.114-0.033-5.148-1.607-5.148-2.221c0-0.002,0-0.008,0-0.012c0-0.785,0.323-1.816,0.666-2.904c0.427-1.361,0.911-2.902,0.911-4.447c0-0.145-0.011-0.286-0.02-0.428c0.215-0.359,0.347-0.776,0.347-1.225c0-1.318-1.065-2.389-2.379-2.389c-1.315,0-2.383,1.071-2.383,2.389c0,1.317,1.068,2.391,2.383,2.391c0.347,0,0.673-0.079,0.97-0.212c-0.093,1.114-0.439,2.268-0.792,3.392c-0.383,1.221-0.745,2.375-0.745,3.434c-0.001,3.137,3.109,3.584,6.162,3.607h0.029h0.027c3.053-0.018,6.165-0.471,6.163-3.607c0-1.059-0.363-2.211-0.744-3.434c-0.354-1.12-0.699-2.272-0.792-3.384c0.293,0.13,0.616,0.205,0.958,0.205C16.939,8.377,18.006,7.303,18.006,5.986z",
+//	plutoSym 		= "M10,0C4.477,0,0,4.476,0,9.999C0,15.523,4.477,20,10,20s10-4.477,10-10.001C20,4.476,15.523,0,10,0z M15.107,16.26c0,0.137-0.111,0.25-0.256,0.25H7.37c-0.144,0-0.259-0.113-0.259-0.25V2.76c0-0.139,0.115-0.25,0.259-0.25h1.806c2.561,0,4.645,2.02,4.645,4.5s-2.084,4.5-4.645,4.5H8.919v3.25h5.935c0.145,0,0.256,0.109,0.256,0.25v1.25H15.107z M9.175,9.758H8.918V4.261h0.257c1.433,0,2.841,1.36,2.841,2.749C12.016,8.398,10.607,9.758,9.175,9.758z",
+//	nepSyn  		= "M10,0C4.477,0,0,4.478,0,10s4.477,10,10,10s10-4.478,10-10S15.523,0,10,0zM16.773,6.241l-0.735-0.737v2.715c0,3.087-2.354,5.625-5.353,5.921v1.465h1.459v1.172h-1.459v1.466h-1.17v-1.466H8.055v-1.172h1.461V14.14c-3-0.296-5.352-2.834-5.352-5.921V5.504L3.428,6.241L2.6,5.414l2.168-2.173l2.168,2.173L6.109,6.241L5.333,5.463v2.756c0,2.437,1.828,4.45,4.183,4.74V5.493L8.77,6.241L7.941,5.414l2.168-2.173l2.168,2.173l-0.826,0.827l-0.768-0.768v7.484c2.354-0.29,4.183-2.305,4.183-4.74V5.462L14.094,6.24l-0.83-0.827l2.168-2.173L17.6,5.413L16.773,6.241z",
+//	uraSyn 		    = "M10,0C4.477,0,0,4.477,0,10c0,5.522,4.477,10,10,10s10-4.479,10-10C20,4.476,15.523,0,10,0zM10.1,17.037c-2.774,0-5.025-2.1-5.025-4.691c0-2.411,1.958-4.377,4.467-4.639V5.384L8.684,6.187L7.73,5.296l2.498-2.334l2.494,2.334l-0.951,0.891l-0.883-0.823v2.364c2.4,0.355,4.238,2.279,4.238,4.618C15.127,14.938,12.878,17.037,10.1,17.037z M13.693,12.346c0,1.85-1.609,3.352-3.594,3.352c-1.98,0-3.588-1.502-3.588-3.352c0-1.852,1.606-3.353,3.588-3.353C12.084,8.994,13.693,10.495,13.693,12.346z",
+//	satSyn  		= "M10,0C4.478,0,0,4.476,0,10.002C0,15.525,4.478,20,10,20s10-4.475,10-9.998C20,4.476,15.522,0,10,0zM13.458,16.63c-1.062,0-1.925-0.861-1.925-1.925c0-0.944,0.584-1.767,1.146-2.562c0.543-0.763,1.053-1.483,1.053-2.249c0-1.518-1.232-2.75-2.75-2.75c-1.514,0-2.748,1.232-2.748,2.75v4.535h-1.1V5.027H5.76V3.929h1.375V2.557h1.1v1.372h1.375v1.099H8.234v2.178c0.699-0.713,1.674-1.158,2.748-1.158c2.123,0,3.848,1.726,3.848,3.849c0,1.117-0.664,2.058-1.257,2.886c-0.483,0.685-0.942,1.33-0.942,1.926c0,0.455,0.371,0.824,0.827,0.824c0.454,0,0.824-0.369,0.824-0.824h1.1C15.382,15.769,14.52,16.63,13.458,16.63z",
+//	jupSyn  		= "M10,0C4.477,0,0,4.477,0,9.999S4.477,20,10,20s10-4.479,10-10.001S15.523,0,10,0zM15.131,14.439H13.76v2.723h-1.102v-2.723H3.45v-1.099c2.183-0.571,3.729-2.043,4.573-3.182C9.025,8.805,9.553,7.368,9.553,6.65c0-1.357-1.104-2.465-2.463-2.465c-1.369,0-2.484,1.096-2.484,2.447H3.505c0-1.956,1.608-3.547,3.584-3.547c1.964,0,3.562,1.602,3.562,3.563c0,0.899-0.539,2.537-1.744,4.166c-0.6,0.809-1.479,1.764-2.67,2.524h6.421V3.085h1.102v10.254h1.371L15.131,14.439L15.131,14.439z",
+//	marSyn  		= "M12.443,11.059c0,1.934-1.567,3.502-3.5,3.502c-1.935,0-3.502-1.568-3.502-3.502c0-1.932,1.567-3.499,3.502-3.499C10.876,7.56,12.443,9.126,12.443,11.059zM20,10.001C20,15.523,15.523,20,10,20S0,15.523,0,10.001C0,4.478,4.477,0,10,0S20,4.477,20,10.001z M15.617,4.382l-2.9,0.002L12.715,5.49l0.998-0.002L11.73,7.474C10.959,6.872,9.999,6.5,8.943,6.5c-2.52,0-4.562,2.04-4.562,4.559c0,2.52,2.042,4.563,4.562,4.563s4.562-2.043,4.562-4.563c0-1.064-0.38-2.03-0.991-2.805l1.995-1.994l-0.002,1.022h1.109L15.617,4.382z",
+//	venSyn   		= "M10,0C4.477,0,0,4.477,0,9.998C0,15.521,4.477,20,10,20s10-4.479,10-10.002C20,4.477,15.523,0,10,0zM10.604,13.375v1.16h1.375v1.102h-1.375v1.4H9.505v-1.4H8.129v-1.102h1.375v-1.154c-2.636-0.262-4.701-2.491-4.701-5.195c0-2.879,2.344-5.224,5.223-5.224s5.222,2.345,5.222,5.224C15.247,10.87,13.211,13.09,10.604,13.375z M14.148,8.186c0,2.273-1.85,4.123-4.123,4.123c-2.272,0-4.123-1.85-4.123-4.123s1.851-4.123,4.123-4.123C12.3,4.063,14.148,5.912,14.148,8.186z",
+//	merSyn   		= "M10.021,6.759c1.727,0,3.125,1.402,3.125,3.127c0,1.721-1.398,3.122-3.125,3.122c-1.722,0-3.123-1.401-3.123-3.122C6.898,8.161,8.301,6.759,10.021,6.759z M20,10c0,5.522-4.477,10-10,10S0,15.522,0,10C0,4.478,4.477,0,10,0S20,4.478,20,10z M14.548,4.789L13.784,4.08c-0.015,0.018-1.562,1.638-3.763,1.638c-2.203,0-3.801-1.628-3.816-1.645L5.831,4.437L5.453,4.795c0.053,0.057,0.954,0.98,2.39,1.541c-1.188,0.735-1.985,2.05-1.985,3.548c0,2.12,1.595,3.874,3.646,4.133v1.049H8.201v1.041h1.303v1.301h1.042v-1.301h1.302v-1.041h-1.302v-1.049c2.056-0.259,3.644-2.013,3.644-4.133c0-1.501-0.795-2.817-1.986-3.552C13.62,5.769,14.497,4.847,14.548,4.789z",
+//	mooSyn  		= "M15.92,9.999c0,3.276-2.663,5.938-5.938,5.938c-0.338,0-0.67-0.027-0.998-0.084c0.832-0.342,1.59-0.865,2.218-1.541c1.093-1.178,1.692-2.705,1.692-4.313c0-1.606-0.601-3.137-1.692-4.313c-0.628-0.677-1.386-1.198-2.218-1.543C9.313,4.088,9.645,4.06,9.982,4.06C13.257,4.06,15.92,6.723,15.92,9.999zM20,9.999C20,15.525,15.522,20,10,20S0,15.525,0,9.999C0,4.474,4.478,0,10,0S20,4.473,20,9.999z M17.019,9.999c0-1.879-0.73-3.646-2.062-4.978C13.629,3.693,11.859,2.96,9.98,2.96c-1.119,0-2.232,0.27-3.222,0.781l-1.72,0.887l1.93,0.149c2.707,0.209,4.826,2.505,4.826,5.221c0,2.717-2.119,5.014-4.826,5.221l-1.93,0.15l1.72,0.887c0.989,0.512,2.103,0.779,3.222,0.779c1.879,0,3.647-0.73,4.977-2.061C16.287,13.645,17.019,11.877,17.019,9.999z",
+//	earSyn 		    = "M9.324,10.556V17C5.833,17,3,14.116,3,10.556H9.324zM9.324,3C5.833,3,3,5.885,3,9.444h6.324V3zM10.676,10.556V17C14.167,17,17,14.116,17,10.556H10.676z M10.676,9.444H17C17,5.885,14.167,3,10.676,3V9.444z M20,10c0,5.523-4.477,10-10,10S0,15.523,0,10C0,4.477,4.477,0,10,0S20,4.477,20,10z M18.795,10.002c0-4.718-3.936-8.542-8.792-8.542c-4.856,0-8.797,3.824-8.797,8.542c0,4.717,3.94,8.538,8.797,8.538C14.859,18.54,18.795,14.72,18.795,10.002z";
+//
+//var pace=12;
+//var sunMoved=false;
+//const ctx = canvas.getContext("2d");
+//const TAU = Math.PI * 2;
+//const centerOnPlanetName = "EarthLine";
+//const globalMatrix = [1,0,0,1,0,0];
+//const solSystem = {};
+//const planets = [];
+//const planetCommon = {
+//      x: 0, y: 0, cos: 1, sin: 0,
+//      update(time) {
+//		//this.ang = parseFloat((this.startAng - this.orbitalSpeed/pace * time).toFixed(4)); // for gate location trackingvery  high CPU
+//		this.ang = this.startAng - this.orbitalSpeed/pace * time;
+//        this.cos = Math.cos(this.ang);
+//        this.sin = Math.sin(this.ang);
+//        if (this.orbits && this.maxDist == 0) {
+//            this.x = this.orbits.x + this.cos * this.dist;
+//            this.y = this.orbits.y + this.sin * this.dist;
+//        } else if (this.orbits && this.maxDist > 0 && this.distTo > this.maxDist) {
+//			this.dist=this.dist-(this.distTo-this.maxDist);
+//            this.x = this.orbits.x + this.cos * this.dist;
+//            this.y = this.orbits.y + this.sin * this.dist;
+//        }else  if (this.orbits && this.maxDist > 0 && this.distTo < this.maxDist && sunMoved==true) {
+//			this.dist=this.dist+(this.maxDist-this.distTo);
+//            this.x = this.orbits.x + this.cos * this.dist;
+//            this.y = this.orbits.y + this.sin * this.dist;
+//		}else  if (this.orbits && this.maxDist > 0 && sunMoved==false) {
+//            this.x = this.orbits.x + this.cos * this.dist;
+//            this.y = this.orbits.y + this.sin * this.dist;
+//		}
+//     },
+//	draw(ctx, globalMat) {
+//		ctx.setTransform(...globalMat);
+//		ctx.transform(this.cos, this.sin, -this.sin, this.cos, this.x, this.y);
+//		if (this.type === 1){ // planet, lunar, node symbols			
+//			symbo(this.symbo, this.fill,this.stroke, -this.ang);
+//		}else if (this.type === 7){ // moon and nodes
+//			symboSmall(this.symbo, this.fill, this.stroke);
+//		}else if (this.type === 2){ // sun top
+//			sunMoved=true;
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 3, 3, -this.ang);
+//			symboLarge(this.symbo, this.fill, this.stroke);
+//		}else if (this.type === 3){ // sun line
+//			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
+//			//console.log(daGates);
+//			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);
+//			const ax = Math.cos(this.dirTo);
+//			const ay = Math.sin(this.dirTo);
+//			ctx.rotate(-Math.PI);
+//				
+//			ctx.beginPath();
+//			ctx.lineCap = "square";
+//			ctx.lineWidth = 21;
+//			ctx.lineTo(0, 0);
+//			ctx.lineTo(ax * (344-this.distTo), ay * (344-this.distTo));
+//			ctx.strokeStyle = "#aaaaaa";
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);
+//			
+//			ctx.translate(ax * (406-this.distTo), ay * (406-this.distTo));
+//			ctx.beginPath();
+//			ctx.lineWidth = 13;
+//			ctx.strokeStyle = "#aaaaaa";
+//			ctx.arc(0,0,45,0,2*Math.PI,true);
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			
+//			ctx.beginPath();
+//			ctx.lineWidth = 3;
+//			ctx.strokeStyle = "#fde992";
+//			ctx.arc(0,0,45,0,2*Math.PI,true);
+//			ctx.stroke();
+//			ctx.closePath();
+//			ctx.translate(ax * -(406-this.distTo), ay * -(406-this.distTo));
+//			
+//			setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
+//			ctx.beginPath();
+//			ctx.lineCap = "square";
+//			ctx.lineWidth = 21;
+//			ctx.lineTo(0, 0);
+//			ctx.lineTo(ax * (344-this.distTo), ay * (344-this.distTo));
+//			ctx.strokeStyle = "#aaaaaa";
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			
+//			ctx.beginPath();
+//			ctx.lineCap = "round";
+//			ctx.lineWidth = 3;
+//			ctx.lineTo(0, 0);
+//			ctx.lineTo(ax * (356-this.distTo), ay * (356-this.distTo));
+//			ctx.strokeStyle = "#fde992";
+//			ctx.stroke();
+//			ctx.closePath();
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			
+//			ctx.beginPath();
+//			ctx.lineCap = "butt";
+//			ctx.lineTo(ax * (522-this.distTo), ay * (522-this.distTo));
+//			ctx.lineTo(ax * (535-this.distTo), ay * (535-this.distTo));
+//			ctx.strokeStyle = "#92A6FD";
+//			ctx.lineWidth = 7;
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//		}else if (this.type === 4){ // earth  line
+//		
+//			setShadow(ctx, "rgba(0,0,0,0.4)", 0, 6, 5, -this.ang);
+//			ctx.beginPath();
+//			ctx.lineCap = "butt";
+//			ctx.lineWidth = 34;
+//			ctx.strokeStyle = this.stroke;
+//			ctx.arc(0,0,36,0,2*Math.PI,true);
+//			ctx.stroke();
+//			ctx.closePath();
+//			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
+//			//console.log(daGates);
+//			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);
+//			ctx.beginPath();
+//			ctx.lineCap = "round";
+//			ctx.lineWidth = 17;
+//			ctx.lineTo(-120, 0);
+//			ctx.lineTo(0, 0);
+//			ctx.strokeStyle = "#aaaaaa";
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			
+//			ctx.beginPath();
+//			ctx.lineCap = "round";
+//			ctx.lineWidth = 3;
+//			ctx.lineTo(-120, 0);
+//			ctx.lineTo(0, 0);
+//			ctx.strokeStyle = "#fde992";
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 6, 5, -this.ang);						
+//			ctx.beginPath();
+//			ctx.lineCap = "round";
+//			ctx.lineWidth = 13;
+//			ctx.lineTo(0, 0);
+//			ctx.lineTo(445, 0);
+//			ctx.strokeStyle = "#aaaaaa";
+//			ctx.stroke();
+//			ctx.closePath();
+//			
+//			ctx.beginPath();  // iOS hack
+//			ctx.lineTo(0, 0); // iOS hack
+//			ctx.stroke();     // iOS hack
+//			ctx.closePath();  // iOS hack
+//			ctx.beginPath();
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			ctx.lineCap = "round";
+//			ctx.lineWidth = 3;
+//			ctx.lineTo(0, 0);
+//			ctx.lineTo(448, 0);
+//			ctx.strokeStyle = "#fde992";
+//			ctx.stroke();
+//			ctx.closePath();
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			ctx.beginPath();
+//			ctx.lineCap = "butt";
+//			ctx.lineWidth = 7;
+//			ctx.lineTo(522, 0);
+//			ctx.lineTo(535, 0);
+//			ctx.strokeStyle = "#92A6FD";
+//			ctx.stroke();
+//			ctx.closePath();
+//		}else if (this.type === 9){ //  lunar phaze
+//			setShadow(ctx, "rgba(0,0,0,0.2)", 0, 3, 3, -this.ang);
+//			ctx.beginPath();
+//			ctx.lineCap = "butt";
+//			ctx.lineWidth = 34;
+//			ctx.strokeStyle = this.stroke;
+//			ctx.arc(0,0,36,0,2*Math.PI,true);
+//			ctx.stroke();
+//			ctx.closePath();
+//			symboMoon(this.symbo, this.fill);
+//		}
+//		if (this.dirTo !== undefined && (this.type ==5 || this.type === 6)) {// planet, lunar, node lines
+//			//daGates = parseFloat(findGate(gateLineObject,this.ang-Math.PI).toFixed(3));
+//			//console.log(daGates);
+//			const ax = Math.cos(this.dirTo);
+//			const ay = Math.sin(this.dirTo);
+//			ctx.rotate(-Math.PI);
+//			if(this.type === 5){ // moon & nodes line
+//					ctx.beginPath();
+//					ctx.lineWidth = 8;
+//					setShadow(ctx, "rgba(0,0,0,0.75)", 0, 2, 3, -this.ang);
+//					ctx.lineCap = "round";
+//					ctx.lineTo(0, 0);
+//					ctx.lineTo(ax * 28, ay * 28);
+//					ctx.strokeStyle = "#aaaaaa";	
+//					ctx.stroke();
+//					ctx.closePath();
+//					ctx.beginPath();
+//					ctx.lineWidth = 1;
+//					setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
+//					ctx.lineCap = "round";
+//					ctx.lineTo(0, 0);
+//					ctx.lineTo(ax * 30, ay * 30);
+//					ctx.strokeStyle = "#fde992";
+//					ctx.stroke();
+//					ctx.closePath();
+//			} else if (this.type === 6 && sunMoved==true) {  // planets lines
+//			//if(this.idnum==13){
+//				//daGates = parseFloat(findGate(gateLineObject,this.dirTo+this.ang).toFixed(3));
+//				//console.log(daGates);
+//			//}
+//				setShadow(ctx, "rgba(0,0,0,0.7)", 0, 5, 6, -this.ang);
+//				
+//				ctx.beginPath();
+//				ctx.lineWidth = 9;
+//				ctx.lineTo(0, 0);
+//				ctx.lineCap = "square";
+//				ctx.lineTo(this.dist, 0);
+//				ctx.strokeStyle = "#aaaaaa";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//				setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
+//				
+//				ctx.lineWidth = 1;
+//				ctx.lineTo(0, 0);
+//				ctx.lineCap = "square";
+//				ctx.lineTo(this.dist, 0);
+//				ctx.strokeStyle = "#fde992";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//				setShadow(ctx, "rgba(0,0,0,0.3)", 0, 2, 3, -this.ang);
+//				
+//				ctx.beginPath();
+//				ctx.lineWidth = 11;
+//				ctx.lineTo(this.dist, 0);
+//				ctx.lineCap = "square";
+//				ctx.lineTo(this.dist/3, 0);
+//				ctx.strokeStyle = "#aaaaaa";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//				
+//				ctx.beginPath();
+//				ctx.lineWidth = 2;
+//				ctx.lineTo(this.dist, 0);
+//				ctx.lineCap = "square";
+//				ctx.lineTo(this.dist/3, 0);
+//				ctx.strokeStyle = "#fde992";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//				setShadow(ctx, "rgba(0,0,0,0.3)", 0, 2, 3, -this.ang);
+//				
+//				ctx.beginPath();
+//				ctx.lineWidth = 13;
+//				ctx.lineTo(this.dist, 0);
+//				ctx.lineCap = "square";
+//				ctx.lineTo(this.dist/2, 0);
+//				ctx.strokeStyle = "#aaaaaa";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//				
+//				ctx.beginPath();
+//				ctx.lineWidth = 3;
+//				ctx.lineTo(this.dist-50, 0);
+//				ctx.lineCap = "square";
+//				ctx.lineTo(this.dist/2, 0);
+//				ctx.strokeStyle = "#fde992";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//				setShadow(ctx, "rgba(0,0,0,0.6)", 0, 2, 3, -this.ang);
+//				
+//				ctx.beginPath();
+//				ctx.lineWidth = 13;
+//				ctx.lineTo(this.dist+36, 0);
+//				ctx.lineCap = "round";
+//				ctx.lineTo(this.dist-36, 0);
+//				ctx.strokeStyle = "#fde992";
+//				ctx.stroke();
+//				ctx.closePath();
+//
+//				setShadow(ctx, "rgba(0,0,0,0.75)", 0, 2, 3, -this.ang);
+//				ctx.beginPath();
+//				ctx.lineCap = "round";
+//				ctx.lineWidth = 8;
+//				ctx.lineTo(ax * 33, ay * 33);
+//				ctx.lineTo(0, 0);
+//				ctx.strokeStyle = "#aaaaaa";
+//				ctx.stroke();
+//				ctx.closePath();
+//				
+//				setShadow(ctx, "rgba(0,0,0,0)", 0, 0, 0, 0);
+//				
+//				ctx.beginPath();
+//				ctx.lineCap = "round";
+//				ctx.lineWidth = 1;
+//				ctx.lineTo(ax * 35, ay * 35);
+//				ctx.lineTo(0, 0);
+//				ctx.strokeStyle = "#fde992";
+//				ctx.stroke();
+//				ctx.closePath();
+//			
+//			}
+//			ctx.beginPath();
+//			setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//			ctx.lineCap = "butt";
+//			ctx.lineWidth = 7;
+//			ctx.lineTo(ax * (522-this.distTo), ay * (522-this.distTo));
+//			ctx.lineTo(ax * (535-this.distTo), ay * (535-this.distTo));
+//			ctx.strokeStyle = "#92A6FD";
+//			ctx.stroke();
+//			ctx.closePath();
+//		}
+//		
+//	},
+//	directionTo(planet) {
+//		if (planet !== this) {
+//			//this.dirTo =  parseFloat((Math.atan2(planet.y - this.y, planet.x - this.x) - this.ang).toFixed(4)); // high CPU
+//			this.dirTo =  Math.atan2(planet.y - this.y, planet.x - this.x) - this.ang;
+//			this.distTo = Math.hypot(planet.y - this.y, planet.x - this.x);
+//		} else {
+//			this.dirTo = undefined;
+//		}
+//	}
+//	
+//};
+//const planet = (idnum, name, orbitsName, dist, orbitalSpeed, startAng, fill, stroke, type, maxDist, symbo) => {
+//    planets.push(solSystem[name] = {
+//        orbits: solSystem[orbitsName],
+//        dist,
+//        orbitalSpeed,
+//        startAng,
+//        fill,
+//		stroke,
+//		type,
+//		maxDist,
+//        symbo,
+//        idnum,
+//        ...planetCommon,
+//     });
+//};
+//
+//
+//var sunPosD = findAngle(gateLineObject,52.1);
+//var merPosD = findAngle(gateLineObject,35.3);
+//var venPosD = findAngle(gateLineObject,52.3);
+//var mooPosD = findAngle(gateLineObject,16.6);
+//var nnoPosD = findAngle(gateLineObject,44.5);
+//var marPosD = findAngle(gateLineObject, 4.5);
+//var jupPosD = findAngle(gateLineObject,23.3);
+//var satPosD = findAngle(gateLineObject,31.1);
+//var uraPosD = findAngle(gateLineObject,28.2);
+//var nepPosD = findAngle(gateLineObject, 5.1);
+//var pluPosD = findAngle(gateLineObject,18.6);
+//
+//planet(1, "SunLine",          undefined,    0,          1,         sunPosD,  "#fde992", "#92A6FD",    3, 0); // #92A6FD
+//planet(4, "EarthLine",        "SunLine",   128,         1, sunPosD+Math.PI,  "#92A6FD", "#fde992",    4, 0);
+//planet(7, "NorthNodeLine",  "EarthLine",    70,   -0.0537,         nnoPosD,  "#92A6FD", "#fde992",    5, 0);
+//planet(8, "SouthNodeLine",  "EarthLine",    70,   -0.0537, nnoPosD-Math.PI,  "#92A6FD", "#fde992",    5, 0);
+//planet(13,"PlutoLine",        "SunLine",   430,     0.004,         pluPosD,  "#92A6FD", "#fde992",    6, 430);
+//planet(12,"NeptuneLine",      "SunLine",   395,    0.0061,         nepPosD,  "#92A6FD", "#fde992",    6, 395);
+//planet(11,"UranusLine",       "SunLine",   360,    0.0119,         uraPosD,  "#92A6FD", "#fde992",    6, 360);
+//planet(10,"SaturnLine",       "SunLine",   325,    0.0339,         satPosD,  "#92A6FD", "#fde992",    6, 325);
+//planet(9, "JupiterLine",      "SunLine",   290,    0.0842,         jupPosD,  "#92A6FD", "#fde992",    6, 290);
+//planet(5, "MarsLine",         "SunLine",   255,    0.5312,         marPosD,  "#92A6FD", "#fde992",    6, 255);
+//planet(3, "VenusLine",        "SunLine",  92.49,   1.6243,         venPosD,  "#92A6FD", "#fde992",    6, 0);
+//planet(2, "MercuryLine",      "SunLine",  50.65,   4.1477,         merPosD,  "#92A6FD", "#fde992",    6, 0);
+//planet(6, "MoonLine",       "EarthLine",    35,     13.37,         mooPosD,  "#92A6FD", "#fde992",    5, 0);
+//
+//planet(1, "Sun",              undefined,     0,         1,         sunPosD,  "#fde992", "#aaaaaa",    2, 0,   sunSym);
+//planet(9, "EarthLunar",       "SunLine",   128,         1, sunPosD+Math.PI,  "#fde992", "#aaaaaa",    9, 0,   earLunSym);
+//planet(7, "NorthNode",      "EarthLine",    70,   -0.0537,         nnoPosD,  "#aaaaaa", "#fde992",    7, 0,   nnodeSym);
+//planet(8, "SouthNode",      "EarthLine",    70,   -0.0537, nnoPosD-Math.PI,  "#aaaaaa", "#fde992",    7, 0,   nnodeSym);
+//planet(13,"Pluto",            "SunLine",   430,     0.004,         pluPosD,  "#aaaaaa", "#fde992",    1, 430, plutoSym);
+//planet(12,"Neptune",          "SunLine",   395,    0.0061,         nepPosD,  "#aaaaaa", "#fde992",    1, 395, nepSyn);
+//planet(11,"Uranus",           "SunLine",   360,    0.0119,         uraPosD,  "#aaaaaa", "#fde992",    1, 360, uraSyn);
+//planet(10,"Saturn",           "SunLine",   325,    0.0339,         satPosD,  "#aaaaaa", "#fde992",    1, 325, satSyn);
+//planet(9, "Jupiter",          "SunLine",   290,    0.0842,         jupPosD,  "#aaaaaa", "#fde992",    1, 290, jupSyn);
+//planet(5, "Mars",             "SunLine",   256,    0.5312,         marPosD,  "#aaaaaa", "#fde992",    1, 255, marSyn);
+//planet(3, "Venus",            "SunLine", 92.49,    1.6243,         venPosD,  "#aaaaaa", "#fde992",    1, 0,   venSyn);
+//planet(2, "Mercury",          "SunLine", 50.65,    4.1477,         merPosD,  "#aaaaaa", "#fde992",    1, 0,   merSyn);
+//planet(6, "Moon",           "EarthLine",    35,     13.37,         mooPosD,  "#aaaaaa", "#fde992",    7, 0,   mooSyn);
+//planet(4, "Earth",            "SunLine",   128,         1, sunPosD+Math.PI,  "#aaaaaa", "#fde992",    1, 0,   earSyn);
+//
+//function centerOn(cx, cy, planet) {
+//	globalMatrix[4] = cx - planet.x;
+//    globalMatrix[5] = cy - planet.y;
+//}
+//function symboMoon(path,fill){
+//	ctx.translate(-50,-50);
+//	ctx.scale(1.25, 1.25);
+//	ctx.fillStyle = fill;
+//	setShadow(ctx, "rgba(0,0,0,0.7)", 0, 1, 2, -this.ang);
+//	var p = new Path2D(path);
+//	ctx.fill(p);
+//}
+//function symboSmall(path,fill,stroke,angle){
+//	ctx.rotate(angle);
+//			setShadow(ctx, "rgba(0,0,0,0.5)", 0, 3, 5, -this.ang);
+//			ctx.beginPath();
+//			ctx.fillStyle = stroke;
+//			ctx.arc(0,0,16,0,2*Math.PI,true);
+//			ctx.fill();
+//			ctx.closePath();
+//	setShadow(ctx, "rgba(255,255,255,1)", 0, -1, 0, -this.ang);
+//	ctx.translate(-15,-15);
+//	ctx.scale(1.5, 1.5);
+//	ctx.fillStyle = fill;
+//	var p = new Path2D(path);
+//	ctx.fill(p);
+//}
+//function symbo(path,fill,stroke,angle){
+//	
+//	ctx.rotate(angle);
+//			setShadow(ctx, "rgba(0,0,0,0.6)", 0, 3, 5, -this.ang);
+//			ctx.beginPath();
+//			ctx.fillStyle = stroke;
+//			ctx.arc(0,0,21,0,2*Math.PI,true);
+//			ctx.fill();
+//			ctx.closePath();
+//	setShadow(ctx, "rgba(255,255,255,1)", 0, -1, 0, -this.ang);
+//	ctx.translate(-20,-20);
+//	ctx.scale(2, 2);
+//	ctx.fillStyle = fill;
+//	var p = new Path2D(path);
+//	ctx.fill(p);
+//}
+//function symboLarge(path,fill,stroke){
+//			setShadow(ctx, "rgba(0,0,0,0.4)", 0, 2, 2, -this.ang);
+//			ctx.beginPath();
+//			ctx.fillStyle = stroke;
+//			ctx.arc(0,0,21,0,2*Math.PI,true);
+//			ctx.fill();
+//			ctx.closePath();
+//	ctx.translate(-20,-20);
+//	ctx.scale(2, 2);
+//	ctx.strokeStyle = "rgba(0,0,0,0)";
+//	ctx.lineWidth = 1;
+//	ctx.fillStyle = fill;
+//	var p = new Path2D(path);
+//	ctx.stroke(p);
+//	ctx.fill(p);
+//}
+//function setShadow(ctx, fill, ox, oy, blur, angle) {
+//	ctx.rotate(angle);
+//	ctx.shadowColor = fill;
+//	ctx.shadowOffsetX = ox;
+//	ctx.shadowOffsetY = oy;
+//	ctx.shadowBlur = blur;
+//	ctx.rotate(-angle);
+//}
+//function findAngle(gateLineObject, gate) {
+//
+//  for (var i = 0; i < Object.keys(gateLineObject).length; i++) {
+//    if (gateLineObject[i].gate == gate) {
+//      return gateLineObject[i].angle+Math.PI;
+//    }
+//  }
+//}
+//function findGate(gateLineObject, targetNumber) {
+//  var closestAngle = 0;
+//  var closestAngleDifference = Math.abs(targetNumber - gateLineObject[0].angle);
+//  for (var i = 0; i < Object.keys(gateLineObject).length; i++) {
+//    var currentAngleDifference = Math.abs(targetNumber - gateLineObject[i].angle);
+//    if (currentAngleDifference < closestAngleDifference) {
+//      closestAngleDifference = currentAngleDifference;
+//      closestAngle = gateLineObject[i].gate;
+//    }
+//  }
+//  return closestAngle;
+//}
+//function mainLoop(time) {
+//	
+//	isElementInView = Utils.isElementInView($('#canvas'), false);
+//	
+//	if (isElementInView) {
+//		paused=false;
+//	} else {
+//		paused=true;
+//	}
+//	if(paused){}else{
+//    time /= 1000;
+//    ctx.setTransform(1, 0, 0, 1, 0, 0);
+//    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+//    planets.forEach(planet => planet.update(time));
+//    planets.forEach(planet => planet.directionTo(solSystem[centerOnPlanetName]));
+//    centerOn(ctx.canvas.width * 0.5, ctx.canvas.height * 0.5, solSystem[centerOnPlanetName]);
+//
+//    planets.forEach(planet => planet.draw(ctx, globalMatrix));
+//	}
+//    requestAnimationFrame(mainLoop);
+//}
+//
+//
+//
+//function isScrolledIntoView(elem)
+//{
+//    var docViewTop = $(window).scrollTop();
+//    var docViewBottom = docViewTop + $(window).height();
+//
+//    var elemTop = $(elem).offset().top;
+//    var elemBottom = elemTop + $(elem).height();
+//
+//    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+//}
+//function Utils() {
+//
+//}
+//
+//Utils.prototype = {
+//    constructor: Utils,
+//    isElementInView: function (element, fullyInView) {
+//        var pageTop = $(window).scrollTop();
+//        var pageBottom = pageTop + $(window).height();
+//        var elementTop = $(element).offset().top;
+//        var elementBottom = elementTop + $(element).height();
+//
+//        if (fullyInView === true) {
+//            return ((pageTop < elementTop) && (pageBottom > elementBottom));
+//        } else {
+//            return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+//        }
+//    }
+//};
+//
+//var Utils = new Utils();
 
 </script>
 </body>
