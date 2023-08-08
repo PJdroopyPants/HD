@@ -566,10 +566,10 @@ function init() {
 	gsap.set(stage, { autoAlpha: 1 });
 	initHeader();
 	initIntro();
-	initLinks();
-	initSlides();
-	initParallax();
-	initKeys();
+	//initLinks();
+	//initSlides();
+	//initParallax();
+	//initKeys();
 }
 
 window.onload = () => {
