@@ -306,20 +306,20 @@ function myCoolFunction() {
 //		}
 //	});
 
-	stl.to(".intro__title", {
-		x: 400,
-		ease: "power4.in",
-		duration: 3
-	}).to(
-		".intro__txt",
-		{
-			x: -400,
-			ease: "power4.in",
-			duration: 3
-		},
-		0
-	);
-}
+//	stl.to(".intro__title", {
+//		x: 400,
+//		ease: "power4.in",
+//		duration: 3
+//	}).to(
+//		".intro__txt",
+//		{
+//			x: -400,
+//			ease: "power4.in",
+//			duration: 3
+//		},
+//		0
+//	);
+//}
 
 //function initLinks() {
 //	// ScrollToPlugin links
