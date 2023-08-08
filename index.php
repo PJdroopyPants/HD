@@ -319,7 +319,7 @@ function myCoolFunction() {
 //		},
 //		0
 //	);
-//}
+}
 
 //function initLinks() {
 //	// ScrollToPlugin links
